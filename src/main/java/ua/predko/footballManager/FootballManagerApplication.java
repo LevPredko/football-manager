@@ -1,4 +1,4 @@
-package ua.predko.FootballManager;
+package ua.predko.footballManager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

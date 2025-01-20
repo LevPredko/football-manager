@@ -1,4 +1,4 @@
-package ua.predko.FootballManager;
+package ua.predko.footballManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
