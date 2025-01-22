@@ -6,9 +6,13 @@ import ua.predko.footballManager.model.dto.TeamDTO;
 import java.util.List;
 
 public interface TeamService {
-    Team createTeam(Team team);
-    Team updateTeam(Long id, Team team);
-    void deleteTeam(Long id);
-    List<Team> getAllTeams();
+    List<TeamDTO> getAllTeams();
+
     Team getTeamById(Long id);
+
+    Team createTeam(Team team);
+
+    Team updateTeam(Long id, Team team);
+
+    void deleteTeam(Long id);
 }
