@@ -1,19 +1,42 @@
 package ua.predko.footballManager.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ua.predko.footballManager.model.Team;
+import ua.predko.footballManager.model.Player;
+import ua.predko.footballManager.model.dto.TeamDTO;
 import ua.predko.footballManager.repository.TeamRepository;
 import ua.predko.footballManager.service.TeamService;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
+import java.util.List;
 
 @Service
 public class TeamServiceImpl implements TeamService {
 
     private final TeamRepository teamRepository;
 
+    @Autowired
     public TeamServiceImpl(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
+    }
+
+    @Override
+    public List<TeamDTO> getAllTeams() {
+        return teamRepository.findAll().stream()
+                .map(team -> new TeamDTO(
+                        team.getId(),
+                        team.getName(),
+                        team.getBalance(),
+                        team.getCommission(),
+                        team.getPlayers().stream().map(Player::getName).toList()
+                ))
+                .toList();
+    }
+
+
+    @Override
+    public Team getTeamById(Long id) {
+        return teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Team not found"));
     }
 
     @Override
@@ -34,15 +57,5 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public void deleteTeam(Long id) {
         teamRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Team> getAllTeams() {
-        return teamRepository.findAll();
-    }
-
-    @Override
-    public Team getTeamById(Long id) {
-        return teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Team not found"));
     }
 }
