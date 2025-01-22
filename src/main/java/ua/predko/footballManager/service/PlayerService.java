@@ -6,7 +6,6 @@ import ua.predko.footballManager.model.dto.PlayerDTO;
 import java.util.List;
 
 public interface PlayerService {
-    void transferPlayer(Long playerId, Long targetTeamId);
 
     List<PlayerDTO> getAllPlayers();
 

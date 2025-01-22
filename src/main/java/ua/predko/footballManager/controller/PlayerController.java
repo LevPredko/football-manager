@@ -17,11 +17,6 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    @PostMapping("/transfer")
-    public void transferPlayer(@RequestParam Long playerId, @RequestParam Long targetTeamId) {
-        playerService.transferPlayer(playerId, targetTeamId);
-    }
-
     @GetMapping
     public List<PlayerDTO> getAllPlayers() {
         return playerService.getAllPlayers();
