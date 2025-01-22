@@ -25,6 +25,7 @@
 - **Java 21** or higher
 - **PostgreSQL**
 - **Maven**
+- **Lombok 1.18.30**
 
 ### Steps to get started
 1. Clone the repository:
@@ -91,3 +92,23 @@
 - Calculation of the transfer fee is based on the player's age and experience.
 - Transfer fee support for teams.
 - Protection of transactions (annotation `@Transactional`).
+
+## Unit Tests
+
+###The project includes comprehensive unit tests to ensure the reliability of core functionalities:
+
+- *PlayerServiceImplTest:* 
+  - Tests for creating, updating, deleting, and retrieving players.  
+  - Validates business rules (e.g., minimum age for players).  
+  - Ensures proper exception handling for invalid operations.
+
+- *TeamServiceImplTest:*  
+  - Tests for creating, updating, and retrieving teams.  
+  - Verifies correct mapping to `TeamDTO` objects.  
+  - Handles scenarios where a team is not found.
+
+- *TransferServiceImplTest:*
+  - Tests for transferring players between teams, covering scenarios such as successful transfers, player/team not found, and insufficient balance.
+  - Verifies that the transfer details, including player name, previous team, and new team, are accurately mapped to the TransferDTO.
+  - Ensures that proper exceptions are thrown for invalid operations, such as player not found, target team not found, or insufficient balance.
+  - Confirms that the repository methods (save, findById) are called with the correct parameters and the transfer is saved appropriately.
