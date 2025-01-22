@@ -24,7 +24,7 @@ public class TeamController {
     }
 
     @GetMapping("/{id}")
-    public Team getTeamById(@PathVariable Long id) {
+    public TeamDTO getTeamById(@PathVariable Long id) {
         return teamService.getTeamById(id);
     }
 

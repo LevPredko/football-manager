@@ -62,9 +62,18 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Player getPlayerById(Long id) {
-        return playerRepository.findById(id)
+    public PlayerDTO getPlayerById(Long id) {
+        Player player = playerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Player not found"));
+
+        return new PlayerDTO(
+                player.getId(),
+                player.getName(),
+                player.getAge(),
+                player.getExperienceMonths(),
+                player.getTransferValue(),
+                player.getTeam() != null ? player.getTeam().getName() : null
+        );
     }
 
     @Override

@@ -1,12 +1,12 @@
 package ua.predko.footballManager.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

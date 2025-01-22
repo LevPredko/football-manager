@@ -1,5 +1,6 @@
 package ua.predko.footballManager.service.impl;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.predko.footballManager.model.Team;
 import ua.predko.footballManager.model.Player;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Transactional
 public class TeamServiceImpl implements TeamService {
 
     private final TeamRepository teamRepository;
@@ -33,10 +35,16 @@ public class TeamServiceImpl implements TeamService {
                 .toList();
     }
 
-
     @Override
-    public Team getTeamById(Long id) {
-        return teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Team not found"));
+    public TeamDTO getTeamById(Long id) {
+        Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Team not found"));
+        return new TeamDTO(
+                team.getId(),
+                team.getName(),
+                team.getBalance(),
+                team.getCommission(),
+                team.getPlayers().stream().map(Player::getName).toList()
+        );
     }
 
     @Override
