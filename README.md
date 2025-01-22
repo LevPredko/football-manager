@@ -95,7 +95,7 @@
 
 ## Unit Tests
 
-###The project includes comprehensive unit tests to ensure the reliability of core functionalities:
+### The project includes comprehensive unit tests to ensure the reliability of core functionalities:
 
 - *PlayerServiceImplTest:* 
   - Tests for creating, updating, deleting, and retrieving players.  
